@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+scrot /tmp/screenshot.png
+convert /tmp/screenshot.png -spread 5 /tmp/screenshotblur.png
+rm /tmp/screenshot.png
+
+i3lock --image="/tmp/screenshotblur.png" --show-failed-attempts \
+    --ignore-empty-password --dpms --inactivity-timeout 5
+
+rm /tmp/screenshotblur.png

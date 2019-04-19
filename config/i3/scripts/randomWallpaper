@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ ! -d "${HOME}"/.config/i3/pictures ]; then
+    exit
+fi
+
+wallpaper=$(ls "${HOME}"/.config/i3/pictures/wallpaper | sort -R | tail -1)
+feh --bg-fill "${wallpaper}"

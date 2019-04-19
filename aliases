@@ -1,0 +1,35 @@
+## Small useful default command parameters
+alias ls='ls --color=auto'
+alias ll='ls -al'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias grep="grep --color=auto"
+alias vi="vim"
+alias term="terminator"
+alias du="du * -shc"
+alias df="df -h"
+
+# This will enable lolcat as default when it is installed
+if which lolcat &> /dev/null; then
+    alias cat='lolcat'
+fi
+
+#alias rsync="rsync -aHAXvP"
+
+## Lock and suspend
+if which i3 &> /dev/null; then
+    if [ -e ~/.config/i3/scripts/lock ]; then
+        alias suspend='~/.config/i3/scripts/lock && systemctl suspend'
+    fi
+fi
+
+## Turn screen LED off
+alias screenoff='sleep 1; xset s activate'
+#alias dpmsoff='xset s off;xset -dpms'
+#alias dpmson='xset s on;xset +dpms'
+
+## Internet stuff
+alias wifi="sudo wpa_supplicant -i {{ wifi_id }} -c ~/.wpa_supplicant/wpa.conf&!"
+alias kill-wifi='sudo killall wpa_supplicant'
+alias wlan-scan="sudo iwlist scanning"

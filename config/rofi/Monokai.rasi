@@ -1,0 +1,32 @@
+* {
+    gray:                   rgba ( 39, 40, 34, 80 % );
+    white:                  rgba ( 248, 248, 242, 100 % );
+    yellow:                 rgba ( 230, 219, 116, 100 % );
+    transparent:            rgba ( 0, 0, 0, 0 % );
+
+    text-color:             @white;
+    background-color:       @transparent;
+
+    padding: 2px;
+}
+#window {
+    fullscreen:       true;
+    background-color: @gray;
+    padding:          50;
+}
+#listview {
+    border:       3px 0px 0px;
+    border-color: @yellow;
+    spacing:      5px;
+}
+#element.selected {
+    text-color: @gray;
+    background-color: @yellow;
+}
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry ];
+}
+#textbox-prompt-colon {
+    expand:     false;
+    str:        " >> ";
+}

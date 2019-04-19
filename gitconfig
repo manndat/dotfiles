@@ -1,0 +1,42 @@
+[http]
+#    proxy = http://localhost:3128
+[user]
+    name = {{ git_name }}
+    email = {{ git_email }}
+[color]
+    ui = auto
+[alias]
+    d = difftool --tool=vimdiff
+    prune = fetch --prune
+    oops = commit --amend --no-edit
+    undo = reset --soft HEAD^
+    stash-all = stash save --include-untracked
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    graph = log --graph --oneline --decorate=short --branches='*'
+[diff]
+    renames = true
+    submodule = log
+[fetch]
+    recurseSubmodules = on-demand
+[log]
+    abbrevCommit = true
+[mergetool]
+    keepBackup = false
+    keepTemporaries = false
+    writeToTemp = true
+[status]
+    submoduleSummary = true
+    showUntrackedFiles = all
+[color "branch"]
+    upstream = cyan
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[transfer]
+    fsckobjects = true
+[push]
+    default = simple
+[credential]
+    # This is for caching the https password for a long time
+    helper = cache --timeout=3600000

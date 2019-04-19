@@ -1,0 +1,311 @@
+## Config file for the i3 window manager
+# Use left alt as mod key
+set $mod Mod1
+
+# Define names for all of the workspaces
+set $workspace1 "1: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+set $workspace11 "11: "
+set $workspace12 "12: "
+set $workspace13 "13: "
+set $workspace14 "14: "
+set $workspace15 "15: "
+set $workspace16 "16: "
+
+# Set colors
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# Set the size of borders around windows
+new_window 1pixel
+
+# Vim key mappig for focus, movement, and resizing
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Disable focus on mouse enter
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Sticky window will always be on active workspace
+bindsym $mod+u sticky toggle
+
+# Keyboard config
+exec_always --no-startup-id setxkbmap {{ keyboard_layout }} -option compose:caps
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:{{ font_face }} {{ font_size }}
+
+# Start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Start rofi instead of dmenu
+bindsym $mod+d exec --no-startup-id rofi -show run
+
+# Fade on workspace change
+exec --no-startup-id compton
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+semicolon split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+# Set popups during fullscreen mode
+popup_during_fullscreen smart
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# Switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+F1 workspace $workspace11
+bindsym $mod+F2 workspace $workspace12
+bindsym $mod+F3 workspace $workspace13
+bindsym $mod+F4 workspace $workspace14
+bindsym $mod+F5 workspace $workspace15
+bindsym $mod+F6 workspace $workspace16
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+F1 move container to workspace $workspace11
+bindsym $mod+Shift+F2 move container to workspace $workspace12
+bindsym $mod+Shift+F3 move container to workspace $workspace13
+bindsym $mod+Shift+F4 move container to workspace $workspace14
+bindsym $mod+Shift+F5 move container to workspace $workspace15
+bindsym $mod+Shift+F6 move container to workspace $workspace16
+
+# Floating by default for specified programs
+for_window [class="VirtualBox"] floating enable
+for_window [class="Sky"] floating enable
+
+# Open applications on predefined workspaces
+assign [class="Chromium"] $workspace1
+assign [class="Atom"] $workspace2
+assign [class="jetbrains-studio"] $workspace3
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym $left        resize shrink width 10 px or 10 ppt
+    bindsym $down        resize grow height 10 px or 10 ppt
+    bindsym $up          resize shrink height 10 px or 10 ppt
+    bindsym $right       resize grow width 10 px or 10 ppt
+
+    bindsym Left        resize shrink width 10 px or 10 ppt
+    bindsym Down        resize grow height 10 px or 10 ppt
+    bindsym Up          resize shrink height 10 px or 10 ppt
+    bindsym Right       resize grow width 10 px or 10 ppt
+
+    # Back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Show/hide border
+bindsym $mod+shift+b [class="^.*"] border toggle
+
+# Toggle border
+set $mode_border Toggle border: (1)OFF (2)NOR (3)BIG
+bindsym $mod+b mode "$mode_border"
+
+mode "$mode_border" {
+    bindsym 1 mode "default", border pixel 0
+    bindsym 2 mode "default", border pixel 5
+    bindsym 3 mode "default", border pixel 10
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+## GAPS
+#smart_gaps on
+#gaps inner 30
+#gaps outer 15
+
+## Toggle Gaps, i3-gaps needs to be installed
+#set $mode_gaps Toggle gaps: (1)OFF (2)NORMAL (3)HUGE
+#bindsym $mod+n mode "$mode_gaps"
+#
+#mode "$mode_gaps" {
+#    bindsym 1 mode "default", gaps inner all set 0, gaps outer all set 0
+#    bindsym 2 mode "default", gaps inner all set 15, gaps outer all set 10
+#    bindsym 3 mode "default", gaps inner all set 30, gaps outer all set 15
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+
+# Window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+# Hide new window edge
+hide_edge_borders both
+
+bar {
+    # Mode hide
+    # Hidden_state show
+    modifier $mod
+
+    separator_symbol "/"
+    status_command i3blocks -c "$HOME"/.config/i3/i3blocks.conf
+    position top
+    colors {
+        background $bg-color
+        separator #757575
+        #                  border             background         text
+        focused_workspace  $bg-color          $bg-color          $text-color
+        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+    }
+}
+
+# Screensaver
+bindsym $mod+q exec --no-startup-id ~/.config/i3/scripts/lock
+
+# Screenshot
+bindsym --release Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
+# Screenshot of selection
+bindsym --release Shift+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+
+# Sound controls
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% && pkill --signal RTMIN+1 i3blocks #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% && pkill --signal RTMIN+1 i3blocks #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle && pkill --signal RTMIN+1 i3blocks # mute sound
+
+# Display
+# Have a different wallpaper every time i3 starts
+exec_always --no-startup-id ~/.config/i3/scripts/wallpaper.sh
+
+# Inc / dec brightness
+#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
+#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
+
+# Disable screen
+bindsym XF86WLAN exec --no-startup-id xset dpms force off
+
+# Media player controls
+#bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPrev exec playerctl previous
+
+# Spotify related key bindings
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+# Conky
+exec --no-startup-id conky
+
+# Mouse
+exec --no-startup-id ~/.config/i3/scripts/mouseConfig
+
+# Autostart programs
+exec --no-startup-id chromium --restore-last-session
+exec --no-startup-id atom
+#exec --no-startup-id sudo netctl start wlan
+
+# For disabling all binds (useful for blender)
+mode "modOff" {
+    bindsym $mod+Shift+m mode "default"
+}
+
+bindsym $mod+Shift+m mode "modOff"

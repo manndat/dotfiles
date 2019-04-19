@@ -1,0 +1,18 @@
+# Hide mouse
+unclutter -idle 10 -jitter 5&
+
+# Vertical scrolling
+synclient HorizTwoFingerScroll=1
+
+# Enable tap to click
+synclient TapButton1=1
+synclient TapButton2=2
+synclient TapButton3=3
+
+# Natural scrolling
+synclient VertScrollDelta=-50
+synclient HorizScrollDelta=-50
+
+# Circular scrolling
+synclient CircularScrolling=1
+synclient CircScrollTrigger=1

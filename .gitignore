@@ -1,0 +1,9 @@
+vim/.netrwhist
+vim/plugged/
+vim/tags/
+vim/undodir/
+bookmarks*.json
+*.swp
+*.jpg
+*.png
+.aliases_private
